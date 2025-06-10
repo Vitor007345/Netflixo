@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflixo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+    <script src="assets/scripts/cadastro_filmes.js" type="module"></script>
+
+
+</head>
+
+<body>
+    <header class="d-flex justify-content-between bg-dark align-items-center">
+
+        <img src="assets/imgs/logo.png" alt="Logo-netflixo" class="logo">
+        <img src="assets/imgs/logo-pequena.png" alt="" class="logo-pequena">
+
+        <div class="divSelectFilme text-center d-flex flex-column align-items-center">
+            <h4>Selecione Um Filme para editar ou adicione um novo</h4>
+            <select id="selectFilme" class="form-select">
+
+            </select>
+        </div>
+
+        <div class="user-info align-self-baseline">
+            <div>
+                <span id="username">Username</span>
+                <img src="assets/imgs/basicUser.png" alt="" id="userimg" class="userimg">
+            </div>
+
+        </div> <!--Fim user-info-->
+
+        <aside id="sidebar-menu" class="sidebar position-absolute end-0 top-0">
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html"><i class="bi bi-house"></i> <span>Home</span></a></li>
+                    <li><a href="#"><i class="bi bi-person"></i> <span>Sua conta</span></a></li>
+                    <li><a href="#"><i class="bi bi-gear"></i> <span>Configurações</span></a></li>
+                    <li><a href="#"><i class="bi bi-star"></i> <span>Favoritos</span></a></li>
+                    <li><a href="#"><i class="bi bi-clock"></i> <span>Assistir depois</span></a></li>
+                    <li><a href="#"><i class="bi bi-book"></i> <span>Histórico</span></a></li>
+                    <li><a href="#"><i class="bi bi-hand-thumbs-up"> </i><span>Filmes curtidos</span></a></li>
+                    <li><a href="#"><i class="bi bi-box-arrow-left"></i> <span>Sair da conta</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+    </header>
+
+    <main class="conatiner-fluid h-100">
+        <div class="row w-100 h-100">
+            <form id="cadastro-filmes" class="col-12 col-md-6">
+                <div class="form-head d-flex justify-content-between">
+                    <h2>Informações do filme</h2>
+                    <div>
+                        <button type="button" id="btExcluir" class="btn btn-secondary m-2"><i class="bi bi-trash"></i>
+                            Excluir</button>
+                        <button type="submit" class="btn btn-secondary m-2"><i class="bi bi-floppy"></i> Salvar</button>
+                    </div>
+
+                </div>
+                <div id="divAlertForm" class="alertBox bg-secondary">
+                    <span><i class="bi bi-exclamation-triangle-fill"></i></span>
+                    <span>Voçê não preencheu algum espaço no formulario</span>
+                    <button type="button" class="btn"><i class="bi bi-x-lg"></i></button>
+                </div>
+                <div class="form-main">
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text">Título</span>
+                        <input type="text" id="inputTitulo" class="form-control" name="titulo">
+                    </div>
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text">Classe</span>
+                        <select name="classe" id="classes" class="form-select">
+                            <option value="filme">Filme</option>
+                            <option value="serie">Série</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 form-floating">
+                        <textarea name="sinopse" id="sinopse" class="form-control h-100" placeholder=""></textarea>
+                        <label for="sinopse" class="form-label">Sinopse</label>
+                    </div>
+                    <div class="mb-3 form-floating">
+                        <textarea name="sinopseGrande" id="sinopseGrande" class="form-control h-100"
+                            placeholder=""></textarea>
+                        <label for="sinopseGrande" class="form-label">Sinopse Grande</label>
+                    </div>
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text">Data de Lançamento</span>
+                        <input type="date" class="form-control" id="dataLancamento" name="data">
+                    </div>
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text">Diretor</span>
+                        <input type="text" id="inputDiretor" class="form-control" name="diretor">
+                        <span class="input-group-text">Avaliação</span>
+                        <input type="number" id="inputAvaliacao" class="form-control" name="avaliacao" min="0" max="5"
+                            step="0.1" placeholder="Avaliação">
+                    </div>
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text">Trailer</span>
+                        <input type="text" id="inputTrailer" class="form-control" name="trailer"
+                            placeholder="https://www.youtube.com/watch?v=XXXXXXXX">
+                    </div>
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text">Banner</span>
+                        <input type="file" id="inputBanner" name="banner" class="form-control" accept="image/*">
+                    </div>
+
+                </div>
+
+
+                <div class="d-flex flex-column align-items-center">
+                    <h3 id="cenasOuEpsTitle"><span>Cenas Marcantes </span><span>Episódios</span></h3>
+
+                    <div id="epsOuCenas">
+                        <div class="epOuCena ep">
+                            <button type="button" class="btn btn-secondary deleteBtn"><i
+                                    class="bi bi-trash3"></i></button>
+                            <div class="input-group">
+                                <span class="input-group-text">Imagem do episódio</span>
+                                <input type="file" name="banner" class="form-control" accept="image/*">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">Título</span>
+                                <input type="text" name="epTitulo" class="form-control">
+                            </div>
+                            <div class="form-floating">
+                                <textarea name="sinopse" id="sinopse" class="form-control h-100"
+                                    placeholder=""></textarea>
+                                <label for="sinopse" class="form-label">Sinopse</label>
+                            </div>
+                        </div>
+                        <div class="epOuCena cena">
+                            <button type="button" class="btn btn-secondary deleteBtn"><i
+                                    class="bi bi-trash3"></i></button>
+                            <div class="input-group">
+                                <span class="input-group-text">Imagem da cena</span>
+                                <input type="file" name="banner" class="form-control" accept="image/*">
+                            </div>
+                            <div class="form-floating">
+                                <textarea name="descricao" id="descricao" class="form-control h-100"
+                                    placeholder=""></textarea>
+                                <label for="descricao" class="form-label">Descrição</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" id="btnAdd" class="btn btn-dark"><i class="bi bi-plus-lg"></i></button>
+                </div>
+
+
+            </form>
+
+            <div class="preview col-12 col-md-6">
+                <iframe id="preview" class="iframePreview" src="detalhes.html?id=standartFilme&preview"
+                    frameborder="0"></iframe>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-dark mt-3">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="sobre col-12 col-md-8 ">
+                    <h3>Sobre</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem, eum? Aperiam totam
+                        tempora sit id iusto accusamus non fuga voluptatibus natus. Enim cupiditate hic repellat, unde
+                        quasi commodi natus nobis at. Quia itaque ipsa provident natus inventore nam libero,
+                        reprehenderit placeat officia asperiores adipisci eaque cumque, nesciunt saepe ratione quibusdam
+                        veniam totam velit. Repellendus eius amet, similique rem harum voluptatibus.</p>
+                </div>
+                <div class="info-especificas col-12 col-md-4 ">
+                    <div class="titulos">
+                        <h3>Autoria</h3>
+                    </div>
+                    <div class="autoria d-flex">
+                        <img class="minhaImg" src="assets/imgs/logo-pequena.png" alt="">
+                        <ul>
+                            <li><span class="infoTitulos">Aluno: </span><span class="infoMsm">Vítor Albuquerquer
+                                    Dinelli</span></li>
+                            <li><span class="infoTitulos">Curso: </span><span class="infoMsm">Ciência da
+                                    Computação</span></li>
+                            <li><span class="infoTitulos">Turma: </span><span class="infoMsm">Manhã</span></li>
+                        </ul>
+                    </div>
+                    <div class="titulos d-flex">
+                        <h3>Redes sociais:</h3>
+                        <span class="redesIcons"><a href="https://wa.me/5531990600927"><i
+                                    class="bi bi-whatsapp"></i></a></span>
+                        <span class="redesIcons"><a href="https://www.instagram.com/vitordinelli2007"><i
+                                    class="bi bi-instagram"></i></a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

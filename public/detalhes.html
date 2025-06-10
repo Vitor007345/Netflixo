@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflixo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/detalhes.css">
+    <script src="assets/scripts/app.js"></script>
+    <script src="assets/scripts/detalhes.js" type="module"></script>
+  
+</head>
+<body>
+  <header class="d-flex justify-content-between bg-dark align-items-center">
+
+    <img src="assets/imgs/logo.png" alt="Logo-netflixo" class="logo">
+    <img src="assets/imgs/logo-pequena.png" alt="" class="logo-pequena">
+    <nav class="search-bar">
+      <input type="text" name="" id="search-input" class="search-input" placeholder="Search...">
+      <button id="btsearch" class="btsearch"><i class="bi bi-search"></i></button>
+      <div class="div-filter">
+        <button id="btfilter" class="btfilter">
+          <i class="bi bi-funnel"></i>
+          <i class="bi bi-funnel-fill"></i>
+        </button>
+        <div id="filter-dropdown" class="dropdown">
+          <ul>
+            <li><input type="checkbox" id="input-acao"><label for="input-acao">Ação</label></li>
+            <li><input type="checkbox" id="input-aventura"><label for="input-aventura">Aventura</label>
+            </li>
+            <li><input type="checkbox" id="input-comedia"><label for="input-comedia">Comédia</label>
+            </li>
+            <li><input type="checkbox" id="input-drama"><label for="input-drama">Drama</label></li>
+            <li><input type="checkbox" id="input-animacao"><label for="input-animacao">Animação</label>
+            </li>
+            <li><input type="checkbox" id="input-romance"><label for="input-romance">Romance</label>
+            </li>
+            <li><input type="checkbox" id="input-terror"><label for="input-terror">Terror</label></li>
+            <li><input type="checkbox" id="input-suspense"><label for="input-suspense">Suspense</label>
+            </li>
+            <li><input type="checkbox" id="input-documentarios"><label for="input-documentarios">Documentários</label>
+            </li>
+            <li><input type="checkbox" id="input-ficcao"><label for="input-ficcao">Ficção
+                Científica</label>
+            </li>
+          </ul>
+        </div> <!--Fim dropdown-->
+      </div><!--Fim filter-dropdown-->
+    </nav> <!--Fim search-bar-->
+    <div class="user-info align-self-baseline">
+      <div class="not-logged">
+        <button class="btlogin">Login</button>
+        <button class="btsignup">Sign-up</button>
+      </div>
+      <div class="logged">
+        <span id="username">Username</span>
+        <img src="assets/imgs/basicUser.png" alt="" id="userimg" class="userimg">
+      </div>
+
+    </div> <!--Fim user-info-->
+
+    <aside id="sidebar-menu" class="sidebar position-absolute end-0 top-0">
+      <nav class="menu">
+        <ul>
+          <li><a href="index.html"><i class="bi bi-house"></i> <span>Home</span></a></li>
+          <li><a href="#"><i class="bi bi-person"></i> <span>Sua conta</span></a></li>
+          <li><a href="#"><i class="bi bi-gear"></i> <span>Configurações</span></a></li>
+          <li><a href="#"><i class="bi bi-star"></i> <span>Favoritos</span></a></li>
+          <li><a href="#"><i class="bi bi-clock"></i> <span>Assistir depois</span></a></li>
+          <li><a href="#"><i class="bi bi-book"></i> <span>Histórico</span></a></li>
+          <li><a href="#"><i class="bi bi-hand-thumbs-up"> </i><span>Filmes curtidos</span></a></li>
+          <li><a href="#"><i class="bi bi-box-arrow-left"></i> <span>Sair da conta</span></a></li>
+      </ul>
+      </nav>
+    </aside>
+  </header>
+
+  <main>
+    <section class="infoGeralFilme">
+      <div class="conatiner-fluid">
+        <div class="row p-o m-0">
+          <div class="imgPrinciapal col-12 col-md-6 col-x1-4 p-0 m-0">
+            <img id="banner" class="p-0 m-0" src="assets/imgs/filmes/banners/jujutsu.jpg" alt="banner princiapal do filme">
+          </div><!--Fim-<div class="imgPrinciapal col-12 col-md-6 col-x1-4 p-0 m-0">-->
+          <div class="infos col-12 col-md-6 col-x1-8 p-3 pt-2">
+            <h3 id="titulo">Título</h3>
+            <p id="sinopse">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, praesentium alias. Veniam dolorem autem dolor inventore odit tempore id, quod repellendus dolore molestias, minima reprehenderit nemo adipisci qui debitis. Pariatur excepturi cumque obcaecati repudiandae placeat assumenda expedita incidunt eligendi doloribus quo explicabo nesciunt earum possimus maiores voluptates officiis autem eveniet ea deserunt nam, sapiente adipisci in modi animi. Ipsum sint cupiditate, sed perspiciatis odio similique a in, aliquam laboriosam itaque nemo. Deserunt ut soluta eligendi quis labore ducimus, magnam explicabo pariatur dolorem et at vel nisi doloribus id illum reprehenderit earum suscipit, dolorum eum inventore. Commodi debitis illum inventore quidem!</p>
+            <div class="d-flex justify-content-between flex-wrap">
+              <div class="categoria d-flex">
+                <h5>Categoria: </h5>
+                <span id="categorias">categoria1, categoria2 e categoria 3</span>
+              </div> <!--Fim-<div class="categoria d-flex">-->
+              <div class="avaliacao d-flex">
+                <h5>Avaliação: </h5>
+                <span id="avaliacaoNum">5.0</span>
+                <span id="estrelasIcons">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </span>
+              </div> <!--Fim-<div class="avaliacao d-flex">-->
+            </div><!--Fim-<div class="d-flex justify-content-between flex-wrap">-->
+            <div class="trailer">
+              <iframe id="iframeTrailer"
+               src="https://www.youtube.com/embed/JfVOs4VSpmA?si=6MNSqcss1swUvdPY" 
+               title="YouTube video player" frameborder="0" 
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+               referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div><!--Fim-<div class="infos col-12 col-md-6 col-x1-8 p-3 pt-2">-->
+        </div><!--Fim-<div class="row p-o m-0">-->
+      </div>
+    </section>
+    <section class="epsOuFotosDoItem">
+      <h3 id="h3epsOuCenas">Episódios/Cenas marcantes</h3>
+      <div id="fotosDoItem" class="d-flex flex-wrap">
+        <!--Preenchido com js-->
+        <!--Versão exemplo:-->
+        <!--
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="assets/imgs/filmes/frieren/frierenEp1.jpg" alt="Card image cap">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="assets/imgs/filmes/frieren/frierenEp2.jpg" alt="Card image cap">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="assets/imgs/filmes/frieren/frierenEp3.jpg" alt="Card image cap">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="assets/imgs/filmes/frieren/frierenEp4.jpg" alt="Card image cap">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="assets/imgs/filmes/frieren/frierenEp5.jpg" alt="Card image cap">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="assets/imgs/filmes/frieren/frierenEp6.jpg" alt="Card image cap">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+        -->
+      </div>
+
+    </section>
+  </main>
+  <footer class="bg-dark mt-3">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="sobre col-12 col-md-8 ">
+          <h3>Sobre</h3>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem, eum? Aperiam totam tempora sit id iusto accusamus non fuga voluptatibus natus. Enim cupiditate hic repellat, unde quasi commodi natus nobis at. Quia itaque ipsa provident natus inventore nam libero, reprehenderit placeat officia asperiores adipisci eaque cumque, nesciunt saepe ratione quibusdam veniam totam velit. Repellendus eius amet, similique rem harum voluptatibus.</p>
+        </div>
+        <div class="info-especificas col-12 col-md-4 ">
+          <div  class="titulos">
+            <h3>Autoria</h3>
+          </div>
+          <div class="autoria d-flex">
+            <img class="minhaImg" src="assets/imgs/logo-pequena.png" alt="">
+            <ul>
+              <li><span class="infoTitulos">Aluno: </span><span class="infoMsm">Vítor Albuquerquer Dinelli</span></li>
+              <li><span class="infoTitulos">Curso: </span><span class="infoMsm">Ciência da Computação</span></li>
+              <li><span class="infoTitulos">Turma: </span><span class="infoMsm">Manhã</span></li>
+            </ul>
+          </div>
+          <div  class="titulos d-flex">
+            <h3>Redes sociais:</h3>
+            <span class="redesIcons"><a href="https://wa.me/5531990600927"><i class="bi bi-whatsapp"></i></a></span>
+            <span class="redesIcons"><a href="https://www.instagram.com/vitordinelli2007"><i class="bi bi-instagram"></i></a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>  
+      
+</body>
+</html>

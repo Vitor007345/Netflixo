@@ -1,0 +1,240 @@
+/*formatação destaques*/
+
+.destaques > div{
+   height: 100%;
+}
+
+.destaques, .carousel-img-div{
+    height: 80vh;
+}
+.carousel-img-div img{
+    cursor: pointer;
+}
+@media screen and (min-width:768px) {
+    .custom-img-carousel{
+        width: 50% !important; /*fiz isso pq a classe inutil do bootstrap w-md-50 simplesmente n funciona de tão ruim q essa merda é, qnd to obviamente acima de 768px vou no inspecionar e a desgraça n ta ta aplicada, ent fds vai assim msm, bootstrap é uma merda*/
+        height: 100%;
+        position: relative;
+        left: 50%;
+        z-index: 1;
+    }
+    .carousel-img-div{
+        
+        width: 100%;
+
+    }
+    .degrade{
+        position: absolute;
+        background: linear-gradient(to right, rgb(22, 0, 22) 45%, rgba(255, 255, 255, 0) 100%);
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 4;
+        
+    }
+    .custom-caption, .carousel-indicators, .carousel-control-prev, .carousel-control-next{
+        z-index: 5;
+    }
+
+    .custom-caption{
+        position: absolute;
+        left: calc(25vw - (400px/2));
+        top: calc(50% - 110px);
+        
+        width: 400px;
+    }
+    .custom-caption h5{
+        font-size: 300%;
+    }
+
+    .custom-caption h5:hover, .custom-caption p:hover{
+        cursor:pointer;
+    }
+
+    
+    
+
+    
+    
+    
+}
+
+
+/*Formatação da área de filmes*/
+
+.divFrase{
+    color: white;
+}
+
+.filme{
+    position: relative;
+    height: 75vw;
+    padding: 0 .75rem;
+    
+}
+
+.filmes .divImg{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    max-width: 100%;
+    height: 100%;
+    z-index: 1;
+    padding: 0 .75rem;
+}
+
+.filmes .row{
+    overflow: auto;
+    flex-wrap: nowrap !important;
+}
+
+.filmes .divImg img{
+    width: 100%;  /*95%*/
+    height: 100%;
+}
+.filme:hover{
+    cursor: pointer;
+}
+
+.filmes .botoes{
+    display: none;
+}
+
+.conteudo{
+    display: none;
+}
+
+@media screen and (min-width:768px) {
+    .filme{
+        height: 50vw;
+    }
+
+    .conteudo{
+        display: block;
+    }
+
+    .filme:hover .conteudo{
+        position: relative;
+        z-index: 2;
+        background-color: rgba(41, 41, 41, 0.808);
+        width: 100%;
+        height: 100%;
+        color: white;
+        padding: 1rem;
+    }
+
+    
+    .filmes .botoes{
+        display: block;
+    }
+    .filmes .botoes ul{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+
+
+    }
+    .filme:hover .botoes{
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+    }
+    .filmes .botoes ul li a{
+        color: purple;
+    }
+    .filmes .botoes ul li a i{
+        font-size: 150%;
+    }
+    .filmes .botoes ul li:first-of-type a i{
+        font-size: 240%;
+
+    }
+
+    .botoes ul li{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .botoes ul li:not(:first-of-type){
+        margin-right: .4rem;
+    }
+}
+
+@media screen and (min-width:992px){
+    .filme{
+        height: 25vw;
+    }
+    .conteudo h3{
+        font-size: 1.8vw;
+    }
+    .conteudo p{
+        font-size: 0.9vw;
+    }
+} 
+
+/*corousel no pc ao invez do scroll*/
+
+.bts-custom-carousel{
+    display: none;
+}
+
+@media screen and (min-width:768px){
+    .filmes .row{
+        overflow: hidden;
+    }
+    .bts-custom-carousel{
+        display: inline-block;
+        width:fit-content;
+        z-index: 10;
+        transform: translateY(-50%);
+
+    }
+    .prev {
+        left: 0;
+    }
+    .next{
+        right: 0;
+    }
+    
+}
+
+/*Formatação da tooltip*/
+.tooltip{
+    display: none;
+    transform: translateX(-50%);
+    color: white;
+    width: fit-content;
+    bottom: 100%;
+    pointer-events: auto;
+    opacity: 100%; /*botei essa merda desgraçada pq alguma merda botou essa dregraça com opacity 0 e nem a IA do inspecionar q analisou os códigos achou oq fez isso, só disse q era esse o problema, pelo menos resolveu*/
+    padding: .5rem;
+    text-align: center;
+    border-radius: .8rem;
+}
+
+.filme:hover .botoes ul li:hover .tooltip{
+    display: block;
+}
+
+.estatisticas h1{
+    text-align: center;
+    color: white;
+    padding: 1rem;
+    
+}
+.divGrafico{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media screen and (min-width:768px) {
+    .divGrafico{
+        width: 50%;
+    }
+}

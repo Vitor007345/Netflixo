@@ -1,0 +1,44 @@
+#cadastro-filmes{
+    color: white;
+    
+}
+.epOuCena{
+    background-color: #343a40;
+    padding: .5rem;
+    margin: 0;
+    margin: .5rem 0;
+    
+    
+}
+.epOuCena > div{
+    margin: .5rem 0;
+}
+.iframePreview{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.preview{
+    padding: 0;
+}
+.alertBox{
+    width: fit-content;
+    justify-self: center;
+    padding: .3rem;
+    border: blueviolet solid .2rem;
+    border-radius: 1rem 1rem 0 0;
+    display: none;
+    color: black;
+}
+.alertBox > span > i{
+    color: blueviolet;
+}
+
+.divSelectFilme{
+    max-width: 50vw;
+    color: white;;
+}
+.divSelectFilme > select{
+    width: fit-content;
+}
