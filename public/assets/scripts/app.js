@@ -1,8 +1,3 @@
-const filmes_key = '/filmes';
-const categorias_key = '/categorias';
-const filmes_categorias_key = '/filmes_categorias';
-const frases_key = '/frases';
-
 String.prototype.simplify = function (){
     return this
       .normalize("NFD")
@@ -15,13 +10,29 @@ let logged = true;
 
 //código geral
 document.addEventListener('DOMContentLoaded', () => {
-    let divDeslogado = document.querySelector('div.not-logged');
-    let divLogado = document.querySelector('div.logged');
-    if (logged) {
-        divDeslogado.style.display = 'none';
-        divLogado.style.display = 'block';
-    } else {
-        divDeslogado.style.display = 'block';
-        divLogado.style.display = 'none';
+    let path = window.location.pathname;
+    if(path != '/cadastro_filmes.html'){
+        let divDeslogado = document.querySelector('div.not-logged');
+        let divLogado = document.querySelector('div.logged');
+        if (logged) {
+            divDeslogado.style.display = 'none';
+            divLogado.style.display = 'block';
+        } else {
+            divDeslogado.style.display = 'block';
+            divLogado.style.display = 'none';
+        }
     }
+    switch(path){
+        case'/':
+        case'/index.html':
+            import('./homePage.js');
+            break;
+        case'/detalhes.html':
+            import('./detalhes.js');
+            break;
+        case '/cadastro_filmes.html':
+            import('./cadastro_filmes.js');
+            break;
+    }
+
 });

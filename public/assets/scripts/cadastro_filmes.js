@@ -20,10 +20,9 @@ import {
 import { createNewCene, createNewEp, onDelete as ceneOrEpOnDelete } from "../../modules/cadastro/epsOuCenas.mjs";
 import { setupSidebar } from "../../modules/sidebar/sidebar.mjs";
 
-const URL_MEU_SITE = 'http://localhost:3000'
-const filmes_key = '/filmes';
-const imgs_key = '/imgs';
-const filmeId_queryParam = 'filme_id'
+import { URL_MEU_SITE, filmes_key, imgs_key, filmeId_queryParam } from "./constantes.js";
+
+
 const inputs = {
     titulo: document.getElementById('inputTitulo'),
     classes: document.getElementById('classes'),

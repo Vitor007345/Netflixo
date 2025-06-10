@@ -4,8 +4,7 @@ import { updateDetalhes } from "../../modules/detalhes/index.mjs";
 import { setupFiltro } from "../../modules/busca/index.mjs"
 import { setupSidebar } from "../../modules/sidebar/sidebar.mjs";
 
-const URL_MEU_SITE = 'http://localhost:3000'
-
+import { filmes_key, categorias_key, filmes_categorias_key, URL_MEU_SITE } from "./constantes.js";
 
 
 

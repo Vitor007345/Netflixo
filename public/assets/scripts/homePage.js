@@ -3,7 +3,7 @@ import { setupSidebar } from '../../modules/sidebar/sidebar.mjs'
 import * as funcFilmes from '../../modules/filmes/index.mjs'
 import {setupFiltro, setupSearchBar} from "../../modules/busca/index.mjs"
 import {setupGraficoQntPorCategoria, setupGraficoAvaliacaoMediaPorCategoria} from '../../modules/graficos/index.mjs'
-
+import { filmes_key, categorias_key, filmes_categorias_key, frases_key } from "./constantes.js";
 
 //não precisa do DomContentLoaded pq type module já tem propriedade defer por padão que faz quase o msm que um DOMContentLoaded
 carregaAPIs((filmes, categorias, filmes_categorias, frases) => {
