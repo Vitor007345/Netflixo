@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflixo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <script type="module" src="assets/scripts/app.js"></script>
+</head>
+
+<body>
+    <header class="d-flex justify-content-center bg-dark align-items-center position-relative">
+
+        <img src="assets/imgs/logo.png" alt="Logo-netflixo" class="logo">
+        <img src="assets/imgs/logo-pequena.png" alt="" class="logo-pequena">
+
+    </header>
+
+    <main class="d-flex justify-content-center align-items-center">
+        <div class="loginBox">
+            <h3 class="text-center">Login</h3>
+            <form id="login">    
+                <div class=" mb-3 input-group">
+                    <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                    <div class="form-floating">
+                        <input type="text" id="userInput" class="form-control" placeholder="">
+                        <label for="userInput" class="form-label">Email or Username</label>
+                    </div>  
+                </div>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <div class="form-floating">
+                        <input type="password" id="passwordInput" class="form-control" placeholder="">
+                        <label for="passwordInput">Password</label>
+                    </div>
+                    <button type="button" class="input-group-text"><i class="bi bi-eye-slash"></i></button>
+                </div>
+                <div class="options d-flex justify-content-between">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="rememberInput">
+                        <label class="form-check-label" for="rememberInput">Remember me</label>
+                    </div>
+                    <div class="forgotPassword"><a href="">Forgot Password?</a></div>
+                </div>
+                <div class="buttons d-flex justify-content-center flex-column align-items-center">
+                    <button type="submit" class="btn btn-dark">Login</button>
+                    <div class="createAccount d-flex justify-content-center flex-column align-items-center">
+                        <span>Don't have an account?</span>
+                        <span>Create one</span>
+                    </div>
+                    
+
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+main{
+    height: calc(100vh - 100px);
+}
+
+.loginBox{
+    background: radial-gradient(circle, black 40%, rgb(75, 0, 75) 100%);
+    width: 90%;
+    border: rgb(39, 39, 39) solid 5px;
+    color: white;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (min-width:768px){
+    .loginBox{
+        width: 50%;
+    }
+}
+
+@media screen and (min-width:1200px){
+    .loginBox{
+        width: 30%;
+    }
+}
