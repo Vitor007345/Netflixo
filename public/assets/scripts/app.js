@@ -11,7 +11,7 @@ let logged = true;
 //código geral
 document.addEventListener('DOMContentLoaded', () => {
     let path = window.location.pathname;
-    if(path != '/cadastro_filmes.html'){
+    if(path != '/cadastro_filmes.html' && path != '/login.html'){
         let divDeslogado = document.querySelector('div.not-logged');
         let divLogado = document.querySelector('div.logged');
         if (logged) {

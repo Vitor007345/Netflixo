@@ -14,6 +14,13 @@ main{
     justify-content: center;
 }
 
+.forgotPassword > a{
+    color: inherit;
+}
+.forgotPassword > a:not(:hover){
+    text-decoration: none;
+}
+
 @media screen and (min-width:768px){
     .loginBox{
         width: 50%;
@@ -24,4 +31,8 @@ main{
     .loginBox{
         width: 30%;
     }
+}
+
+.buttons > div > span:nth-of-type(2):hover{
+    text-decoration: underline;
 }
