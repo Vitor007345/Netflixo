@@ -36,3 +36,10 @@ main{
 .buttons > div > span:nth-of-type(2):hover{
     text-decoration: underline;
 }
+
+.alert{
+    margin: 0;
+    padding: 0;
+    color: red;
+    text-align: center;
+}

@@ -117,14 +117,14 @@ function setupInterativities(){
             emailGroup.querySelector('span').innerHTML = '<i class="bi bi-envelope"></i>';
             emailGroup.querySelector('div > label').innerText = 'Email';
             loginForms.insertAdjacentHTML('afterbegin', `
-                <div class=" mb-3 input-group">
+                <div class=" mt-3 input-group">
                     <span class="input-group-text"><i class="bi bi-person-vcard"></i></i></span>
                     <div class="form-floating">
                         <input type="text" id="nameInput" class="form-control" placeholder="">
                         <label for="nameInput" class="form-label">Full name</label>
                     </div>
                 </div>
-                <div class=" mb-3 input-group">
+                <div class=" mt-3 input-group">
                     <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
                     <div class="form-floating">
                         <input type="text" id="usernameInput" class="form-control" placeholder="">
@@ -137,7 +137,7 @@ function setupInterativities(){
             loginForms.querySelector('.buttons > div > span').innerText = 'Already has an account?';
             btnChange.innerText = 'Log-in';
             loginForms.querySelector('.options').insertAdjacentHTML('beforebegin', `
-                <div class="mb-3 input-group passwordGroup">
+                <div class="mt-3 input-group passwordGroup">
                     <span class="input-group-text"><i class="bi bi-lock"></i></span>
                     <div class="form-floating">
                         <input type="password" id="confirmPasswordInput" class="form-control" placeholder="">
@@ -180,9 +180,15 @@ loginForms.addEventListener('submit', (e)=>{
 })
 
 
+function alertForm(text, input){
+    const divInput = input.parentElement.parentElement;
+    divInput.insertAdjacentHTML('afterend', `<div class="alert">${text}</div>`);
+}
+
 export {
     setupInterativities,
     setLogin,
-    setRegister
+    setRegister,
+    alertForm
 }
 
