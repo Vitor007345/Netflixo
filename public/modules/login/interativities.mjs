@@ -52,7 +52,7 @@
                 </div>
             </form>
 */
-import { loginForms } from "./constantes.mjs";
+import { loginForms, btnChange } from "./constantes.mjs";
 let isLogin = true;
 let registerCallback = null;
 let loginCallback = null;
@@ -107,12 +107,12 @@ function cleanForms(inputs){
 function setupInterativities(){
     console.log(inputs);
     general();
-    const btnChange = document.getElementById('changeBtn');
     btnChange.addEventListener('click', ()=>{
         const titulo = document.querySelector('.loginBox > h3');
         const emailGroup = loginForms.querySelector('.emailGroup');
         cleanForms(inputs);
         if(isLogin){
+            removeAllAlerts(inputs);
             titulo.innerText = 'Registration';
             emailGroup.querySelector('span').innerHTML = '<i class="bi bi-envelope"></i>';
             emailGroup.querySelector('div > label').innerText = 'Email';
@@ -151,6 +151,7 @@ function setupInterativities(){
             inputs.confirmPassword = loginForms.querySelector('#confirmPasswordInput');
             general();
         }else{
+            removeAllAlerts(inputs);
             titulo.innerText = 'Login';
             emailGroup.querySelector('span').innerHTML =  '<i class="bi bi-person-fill"></i>';
             emailGroup.querySelector('div > label').innerText = 'Email or Username';
@@ -182,13 +183,29 @@ loginForms.addEventListener('submit', (e)=>{
 
 function alertForm(text, input){
     const divInput = input.parentElement.parentElement;
+    const alertAntigo = divInput.nextElementSibling;
+    if(alertAntigo.classList.contains('alert')) alertAntigo.remove();
     divInput.insertAdjacentHTML('afterend', `<div class="alert">${text}</div>`);
+}
+
+function removeAlert(text, input){
+    const alertAntigo = input.parentElement.parentElement.nextElementSibling;
+    if(alertAntigo.classList.contains('alert') && (text? (alertAntigo.innerText === text): true)) alertAntigo.remove();
+}
+
+function removeAllAlerts(inputs){
+    Object.values(inputs).forEach(input=>{
+        if(input){
+            removeAlert(null, input);
+        }
+    });
 }
 
 export {
     setupInterativities,
     setLogin,
     setRegister,
-    alertForm
+    alertForm,
+    removeAlert
 }
 

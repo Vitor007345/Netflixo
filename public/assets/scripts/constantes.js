@@ -1,6 +1,7 @@
 export const filmes_key = '/filmes';
 export const categorias_key = '/categorias';
 export const filmes_categorias_key = '/filmes_categorias';
+export const users_key = '/usuarios';
 export const frases_key = '/frases';
 export const URL_MEU_SITE = 'http://localhost:3000';
 export const imgs_key = '/imgs';

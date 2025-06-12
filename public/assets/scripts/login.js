@@ -1,5 +1,6 @@
-import { setupInterativities } from "../../../modules/login/index.mjs";
+import { setupInterativities, configRegister } from "../../../modules/login/index.mjs";
 
 window.addEventListener('DOMContentLoaded', ()=>{
     setupInterativities();
+    configRegister();
 })
