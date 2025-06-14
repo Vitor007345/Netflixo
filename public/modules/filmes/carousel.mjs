@@ -34,7 +34,7 @@ function caroulselParaPC(itemsPerView, row) {
         if (noAnimation) { //se o update for por cause de um resize no tamanho da tela faz sem animação, se não com animação
             track.scrollLeft = currentIndex * itemWidth;
         } else {
-            scrollAnimadoEase(track, track.scrollLeft, currentIndex * itemWidth, tempo, 2000);
+            scrollAnimadoEase(track, track.scrollLeft, currentIndex * itemWidth, tempo, 500);
         }
         setTimeout(() => { //bts só atualizão após o fim da animação
             prevBtn.style.left = `${currentIndex * itemWidth}px`;

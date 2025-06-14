@@ -1,6 +1,12 @@
-import { setupInterativities, configRegister } from "../../../modules/login/index.mjs";
+import { setupInterativities, configRegister, configLogin} from "../../../modules/login/index.mjs";
+import { btnChange } from "../../../modules/login/constantes.mjs";
+import { hasParam } from "../../../modules/utils/index.mjs";
 
-window.addEventListener('DOMContentLoaded', ()=>{
-    setupInterativities();
-    configRegister();
-})
+setupInterativities();
+configRegister();
+configLogin();
+
+if(hasParam('register')){
+    btnChange.click();
+}
+

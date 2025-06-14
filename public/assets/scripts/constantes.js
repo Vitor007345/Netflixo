@@ -6,3 +6,4 @@ export const frases_key = '/frases';
 export const URL_MEU_SITE = 'http://localhost:3000';
 export const imgs_key = '/imgs';
 export const filmeId_queryParam = 'filme_id';
+export const storage_key = 'user:current:id';
