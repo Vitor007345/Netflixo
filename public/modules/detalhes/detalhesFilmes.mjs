@@ -1,4 +1,7 @@
-import {converterYTWatchParaEmbed, relacionarObjs, resolveImgPath, convertStrDataToNormalStrData} from '../utils/index.mjs'
+import {converterYTWatchParaEmbed, relacionarObjs, resolveImgPath, convertStrDataToNormalStrData, hasParam} from '../utils/index.mjs'
+import { User } from '../login/userClass.mjs';
+import { storage_key } from '../../assets/scripts/constantes.js';
+import { getUserId, favoritar, desfavoritar } from '../favoritos/general.mjs';
 
 
 
@@ -27,7 +30,39 @@ function colocarEstrelas(numAvaliacao, container) {
 
 function carregaDadosPincipaisDetalhes(infoFilme, categorias, filmes_categorias) {
 
-    
+    if(!hasParam('preview')){
+        const favouriteBtn = document.getElementById('fovouriteBtn');
+        let userId = getUserId();
+        if(userId){
+            User.fromId(userId)
+                .then(user=>{
+                    if(user){
+                        let favoritado = false;
+                        if(user.favoritos.includes(parseInt(infoFilme.id))){
+                            favoritar(favouriteBtn, user, infoFilme.id, false);
+                            favoritado = true;
+                        }
+                        favouriteBtn.addEventListener('click', ()=>{
+                            if(favoritado){
+                                desfavoritar(favouriteBtn, user, infoFilme.id);
+                            }else{
+                                favoritar(favouriteBtn, user, infoFilme.id);
+                            }
+                            favoritado = !favoritado;
+                        });
+                        
+                    }
+                    
+
+
+                });
+        }else{
+            favouriteBtn.addEventListener('click', ()=>{
+                alert('Você prescisa logar para favoritar um filme');
+                window.location.href = '#';
+            });
+        }
+    }
 
     //declara todos os elementos que serão alterados dinamicamente
     let banner = document.getElementById('banner'); //console.log(banner);

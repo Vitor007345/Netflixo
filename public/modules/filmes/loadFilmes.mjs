@@ -1,6 +1,7 @@
 import { randomSequencePorDia, getInApi } from "../utils/index.mjs";
-import { users_key, storage_key } from "../../assets/scripts/constantes.js";
+import { storage_key } from "../../assets/scripts/constantes.js";
 import { User } from '../login/userClass.mjs'
+import { favoritar, desfavoritar, getUserId } from "../favoritos/general.mjs";
 
 function carregaFilmes(filmes, frases, estaNoFiltro = false) {
     const numDeRows = frases.length; //seta o número de linhas de filmes correspondente ao número de frase
@@ -47,8 +48,7 @@ function carregaFilmes(filmes, frases, estaNoFiltro = false) {
 
     async function carregaCliquesFilmes() {
         let user = null;
-        let userId = sessionStorage.getItem(storage_key);
-        if(!userId) userId = localStorage.getItem(storage_key);
+        let userId = getUserId();
         if(userId){
             try{
                  user = await User.fromId(userId);
@@ -71,9 +71,9 @@ function carregaFilmes(filmes, frases, estaNoFiltro = false) {
                     e.preventDefault();
                     if(user){
                         if(favoritado){
-                            desfavoritar();
+                            desfavoritar(favouriteBtn, user, idDoFilme);
                         }else{
-                            favoritar();
+                            favoritar(favouriteBtn, user, idDoFilme);
                         }
                         favoritado = !favoritado
                     }else{
@@ -87,30 +87,11 @@ function carregaFilmes(filmes, frases, estaNoFiltro = false) {
                 
             });
 
-
-            function favoritar(update = true){
-                const icon = favouriteBtn.querySelector('i');
-                icon.classList.remove('bi-star');
-                icon.classList.add('bi-star-fill');
-                if(update){
-                    user.favoritos.add(idDoFilme);
-                    user.updateInServer();
-                }
-            }
-            function desfavoritar(update = true){
-                const icon = favouriteBtn.querySelector('i');
-                icon.classList.add('bi-star');
-                icon.classList.remove('bi-star-fill');
-                if(update){
-                    user.favoritos.remove(idDoFilme);
-                    user.updateInServer();
-                }
-            }
             function configFavoritoInicial(){
                 let favoritado = false;
                 if(user && user.favoritos.includes(parseInt(idDoFilme))){
                     favoritado = true;
-                    favoritar(false);
+                    favoritar(favouriteBtn, user, idDoFilme, false);
                 }
                 return favoritado;
             }

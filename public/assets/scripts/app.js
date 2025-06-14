@@ -1,5 +1,6 @@
 import { getInApi, hasParam } from '../../modules/utils/index.mjs';
 import { users_key, storage_key } from './constantes.js';
+import { getUserId } from '../../modules/favoritos/general.mjs';
 
 
 
@@ -20,8 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const divDeslogado = document.querySelector('div.not-logged');
         const divLogado = document.querySelector('div.logged');
 
-        let userId = sessionStorage.getItem(storage_key);
-        if(!userId) userId = localStorage.getItem(storage_key);
+        let userId = getUserId();
         function configDeslogado(){
             if(path !== '/cadastro_filmes.html'){
                 divDeslogado.style.display = 'block';
