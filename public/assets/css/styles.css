@@ -198,4 +198,15 @@ footer .row{
     z-index: 21;
 }
 
+/*formatação botões login*/
+.btsignup{
+    display: none;
+}
+@media screen and (min-width: 576px){
+    
+    .btsignup{
+        display: inline-block;
+    }
+}
+
 

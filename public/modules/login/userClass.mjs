@@ -1,5 +1,5 @@
 import { users_key } from "../../assets/scripts/constantes.js";
-import { deleteInApi , postInApi, putInApi} from "../utils/APIs.mjs";
+import { deleteInApi , postInApi, putInApi, getInApi, deepCompare, getSafeVersionOfArray} from "../utils/index.mjs";
 
 export class User{
     #id;
@@ -10,6 +10,7 @@ export class User{
     #admin;
     #favoritos;
     #destroyed = false;
+    #favoritosProxy = null;
 
 
     get id(){return this.#id;}
@@ -18,7 +19,43 @@ export class User{
     get nome(){return this.#nome}
     get email(){return this.#email}
     get admin(){return this.#admin}
-    get favoritos(){return Object.freeze([...this.#favoritos])}
+    get favoritos(){
+        let safeFavoritos = null;
+        if(!this.#destroyed){
+            if(!this.#favoritosProxy){
+                const userThis = this;
+                safeFavoritos = getSafeVersionOfArray(this.#favoritos, [
+                    function add(filmeId){
+                        userThis.#checkDestroyed();
+                        let sucesso = false;
+                        const id = Number(filmeId);
+                        if(Number.isInteger(id)){
+                            this.push(id);
+                            sucesso = true;
+                        }
+                        return sucesso;
+                        },
+                    function remove(filmeId){
+                        userThis.#checkDestroyed();
+                        let sucesso = false;
+                        const id = Number(filmeId);
+                        if(Number.isInteger(id)){
+                            const index = this.indexOf(id);
+                            if(index !== -1){
+                                this.splice(index, 1);
+                                sucesso = true;
+                            }
+                        }
+                        return sucesso;
+                    }
+                ]);
+                this.#favoritosProxy = safeFavoritos;
+            }else{
+                safeFavoritos = this.#favoritosProxy;
+            }
+        }
+        return safeFavoritos;
+    }
 
     generateNewId(){
         this.#checkDestroyed();
@@ -79,7 +116,15 @@ export class User{
             console.error('Invalid admin');
         }
     }
-
+    static async fromId(id){
+        try{
+            const userData = await getInApi(`${users_key}/${id}`);
+            return new User(userData);
+        }catch(e){
+            console.error('Erro ao buscar dados do usário', e);
+            return null;
+        }
+    }
     constructor(dados){
         const {
             id = crypto.randomUUID(),
@@ -94,13 +139,20 @@ export class User{
         if(!login || !senha || !nome || !email){
             throw new Error('Login, senha nome, e email são argumentos orbrigatórios');
         }
-
+        const favoritosCopy = favoritos.map(elem=>{
+            const id = Number(elem);
+            if(!Number.isInteger(id)){
+                throw new Error('Invalid favourite ID, need to be a integer number');
+            }
+            return id;
+        });
         this.#setId = id;
         this.login = login;
         this.senha = senha;
+        this.nome = nome;
         this.email = email;
         this.admin = admin;
-        this.#favoritos = [...favoritos];
+        this.#favoritos = favoritosCopy;
     }
 
     toJSON(){
@@ -109,9 +161,10 @@ export class User{
             id: this.id,
             login: this.login,
             senha: this.senha,
+            nome: this.nome,
             email: this.email,
             admin: this.admin,
-            favoritos: this.favoritos
+            favoritos: [...this.#favoritos]
         }
     }
     destroy(){
@@ -124,6 +177,7 @@ export class User{
         this.#email = null;
         this.#admin =  null;
         this.#favoritos = [];
+        this.#favoritosProxy = null;
     }
     async deleteInServer(hard){
         this.#checkDestroyed();
@@ -136,7 +190,15 @@ export class User{
 
     async updateInServer(){
         this.#checkDestroyed();
-        return await putInApi(users_key, this.id, this.toJSON(), {returnStatus: true});
+        let status = await getInApi(`${users_key}/${this.id}`, {returnStatus: true});
+        if(status.success){
+            if(!deepCompare(this.toJSON(), status.resContent)){
+                status = await putInApi(users_key, this.id, this.toJSON(), {returnStatus: true});;
+            }
+        }else if(status.httpStatus === 404){
+            status = await postInApi(users_key, this.toJSON(), {returnStatus: true});
+        }
+        return status;
     }
 
     #checkDestroyed(){

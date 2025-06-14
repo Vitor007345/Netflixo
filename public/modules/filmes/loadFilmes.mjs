@@ -1,4 +1,6 @@
-import { randomSequencePorDia } from "../utils/random.mjs";
+import { randomSequencePorDia, getInApi } from "../utils/index.mjs";
+import { users_key, storage_key } from "../../assets/scripts/constantes.js";
+import { User } from '../login/userClass.mjs'
 
 function carregaFilmes(filmes, frases, estaNoFiltro = false) {
     const numDeRows = frases.length; //seta o número de linhas de filmes correspondente ao número de frase
@@ -43,16 +45,79 @@ function carregaFilmes(filmes, frases, estaNoFiltro = false) {
          `;
     }
 
-    function carregaCliquesFilmes() {
+    async function carregaCliquesFilmes() {
+        let user = null;
+        let userId = sessionStorage.getItem(storage_key);
+        if(!userId) userId = localStorage.getItem(storage_key);
+        if(userId){
+            try{
+                 user = await User.fromId(userId);
+            }catch(e){
+                console.error(`Erro ao carregar dados do usuários: ${userId}`, e);
+            }
+        }
+
         for (let i = 0; i < filmes.length; i++) {
             //console.log(document.getElementById(`filme${i}`));
             const divFilme = document.getElementById(`filme${i}`);
-            divFilme.addEventListener('click', () => {
-                let idDoFilme = divFilme.querySelector(`#id${i}`).innerText;
-                console.log(`Entro nessa bagaça`);
-                window.location.href = `detalhes.html?id=${idDoFilme}`;
+            const idDoFilme = divFilme.querySelector(`#id${i}`).innerText;
+            const favouriteBtn = divFilme.querySelector(`#favouriteBtn-${idDoFilme}`);
+
+            let favoritado = configFavoritoInicial();
+            
+            divFilme.addEventListener('click', (e) => {
+                
+                if(favouriteBtn.contains(e.target)){
+                    e.preventDefault();
+                    if(user){
+                        if(favoritado){
+                            desfavoritar();
+                        }else{
+                            favoritar();
+                        }
+                        favoritado = !favoritado
+                    }else{
+                        alert('Para favoritar voçê precisa realizar o login');
+                        window.location.href = '#';
+                    }
+                    
+                }else{
+                    window.location.href = `detalhes.html?id=${idDoFilme}`;
+                }
+                
             });
+
+
+            function favoritar(update = true){
+                const icon = favouriteBtn.querySelector('i');
+                icon.classList.remove('bi-star');
+                icon.classList.add('bi-star-fill');
+                if(update){
+                    user.favoritos.add(idDoFilme);
+                    user.updateInServer();
+                }
+            }
+            function desfavoritar(update = true){
+                const icon = favouriteBtn.querySelector('i');
+                icon.classList.add('bi-star');
+                icon.classList.remove('bi-star-fill');
+                if(update){
+                    user.favoritos.remove(idDoFilme);
+                    user.updateInServer();
+                }
+            }
+            function configFavoritoInicial(){
+                let favoritado = false;
+                if(user && user.favoritos.includes(parseInt(idDoFilme))){
+                    favoritado = true;
+                    favoritar(false);
+                }
+                return favoritado;
+            }
         }
+
+
+
     }
     carregaCliquesFilmes();
 
@@ -81,7 +146,7 @@ function carregaOFilme(i, ordem, sFilmes, row, filmes) {
               <ul>
                 <li class="position-relative"><a href="detalhes.html?id=${infoFilme.id}#iframeTrailer"><i class="bi bi-play"></i><div class="tooltip position-absolute start-50 bg-dark">Assista o Trailer</div></a></li>
                 <li class="position-relative"><a href=""><i class="bi bi-bookmark"></i><div class="tooltip position-absolute start-50 bg-dark">Salve para assistir depois</div></a></li>
-                <li class="position-relative"><a href=""><i class="bi bi-star"></i><div class="tooltip position-absolute start-50 bg-dark">Favorite</div></a></li>
+                <li class="position-relative"><a id="favouriteBtn-${infoFilme.id}" href=""><i class="bi bi-star"></i><div class="tooltip position-absolute start-50 bg-dark">Favorite</div></a></li>
               </ul>
             </div>
           </div>

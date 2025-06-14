@@ -12,7 +12,11 @@ export {
 export{
     relacionarObjs,
     excluirObjRepetidos,
-    renameObjPropertys 
+    renameObjPropertys,
+    simpleDeepCompare,
+    deepCompare,
+    createSafeArr,
+    getSafeVersionOfArray 
 } from './objects.mjs'
 export{
     random,

@@ -82,6 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
         case '/login.html':
             import('./login.js');
             break;
+        case '/favoritos.html':
+            import('./favoritos.js');
+            break;
     }
 
 });
