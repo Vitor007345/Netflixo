@@ -153,6 +153,9 @@
         font-size: 240%;
 
     }
+    .filmes .botoes ul li:last-of-type a i{
+        font-size: 175%;
+    }
 
     .botoes ul li{
         display: flex;

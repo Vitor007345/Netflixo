@@ -16,36 +16,46 @@ String.prototype.simplify = function (){
 //código geral
 document.addEventListener('DOMContentLoaded', () => {
     let path = window.location.pathname;
-    if(path != '/cadastro_filmes.html' && path != '/login.html' && !hasParam('preview')){
+    if(path !== '/login.html' && !hasParam('preview')){
         const divDeslogado = document.querySelector('div.not-logged');
         const divLogado = document.querySelector('div.logged');
 
         let userId = sessionStorage.getItem(storage_key);
         if(!userId) userId = localStorage.getItem(storage_key);
         function configDeslogado(){
-            divDeslogado.style.display = 'block';
-            divLogado.style.display = 'none';
-            divDeslogado.querySelector('.btlogin').onclick = ()=>{
-                window.location.href = '/login.html';
+            if(path !== '/cadastro_filmes.html'){
+                divDeslogado.style.display = 'block';
+                divLogado.style.display = 'none';
+                divDeslogado.querySelector('.btlogin').onclick = ()=>{
+                    window.location.href = '/login.html';
+                }
+                divDeslogado.querySelector('.btsignup').onclick = ()=>{
+                    window.location.href = '/login.html?register';
+                }
             }
-            divDeslogado.querySelector('.btsignup').onclick = ()=>{
-                window.location.href = '/login.html?register';
-            }
+
         }
         if(userId){
-            divDeslogado.style.display = 'none';
-            divLogado.style.display = 'block';
+            if(path !== '/cadastro_filmes.html'){
+                divDeslogado.style.display = 'none';
+                divLogado.style.display = 'block';
+            }
             getInApi(`${users_key}/${userId}`)
                 .then((userData)=>{
-                    divLogado.querySelector('#username').innerText = userData.login;
+                    document.getElementById('username').innerText = userData.login;
                     if(!userData.admin){
-                        let crudBtn = document.getElementById('crud');
-                        if(crudBtn) crudBtn.style.display = 'none';
+                        if(path === '/cadastro_filmes.html'){
+                            alert('You  need to be an admin to access this page');
+                            window.location.href = '/index.html';
+                        }else{
+                            let crudBtn = document.getElementById('crud');
+                            if(crudBtn) crudBtn.style.display = 'none';
+                        }
                     }
                     document.getElementById('sair-conta').addEventListener('click', (e)=>{
                         sessionStorage.removeItem(storage_key);
                         localStorage.removeItem(storage_key);
-                        window.location.href = window.location.href;
+                        window.location.href = (path === '/cadastro_filmes.html')? '/index.html' : window.location.href;
                     });
                 })
                 .catch((e)=>{

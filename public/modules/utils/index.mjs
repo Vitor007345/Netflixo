@@ -38,3 +38,6 @@ export {
     getImageType,
     resolveImgPath
 }from './imgsFILES.mjs'
+export {
+    convertStrDataToNormalStrData
+} from './datas.mjs'

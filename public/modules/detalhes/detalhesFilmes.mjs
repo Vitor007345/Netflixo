@@ -1,4 +1,4 @@
-import {converterYTWatchParaEmbed, relacionarObjs, resolveImgPath} from '../utils/index.mjs'
+import {converterYTWatchParaEmbed, relacionarObjs, resolveImgPath, convertStrDataToNormalStrData} from '../utils/index.mjs'
 
 
 
@@ -36,11 +36,15 @@ function carregaDadosPincipaisDetalhes(infoFilme, categorias, filmes_categorias)
     let avaliacaoNum = document.getElementById('avaliacaoNum'); //console.log(avaliacaoNum);
     let spanEstrelas = document.getElementById('estrelasIcons'); //console.log(spanEstrelas);
     let iframeTrailer = document.getElementById('iframeTrailer'); //console.log(iframeTrailer);
+    let dataLancamento = document.getElementById('dataLancamento');
+    let diretor = document.getElementById('diretor');
 
     //altera os elementos de acordo com os dados
     banner.src = infoFilme.imgPrinciapl;
     titulo.innerText = (!infoFilme.subtitulo) ? infoFilme.titulo : infoFilme.titulo + " " + infoFilme.subtitulo; //adiciona somente o titulo se subtitulo n existir, se existir adiciola o titulo e o subtitulo
     sinopse.innerText = infoFilme.sinopseGrande;
+    dataLancamento.innerText = convertStrDataToNormalStrData(infoFilme.data);
+    diretor.innerText = infoFilme.diretor;
     avaliacaoNum.innerHTML = '&nbsp;' + infoFilme.avaliacao;
     if (Number.isInteger(parseFloat(infoFilme.avaliacao))) { //caso sejá inteiro o número ira aparecer só assim 5 ou assim 4, ai pra ficar melhor se for inteiro ele adiciona um .0
         avaliacaoNum.innerHTML += '.0';
@@ -179,6 +183,12 @@ function updateDetalhes(key, data){
                 
             case 'banner':
                 document.getElementById('banner').src = data;
+                break;
+            case 'data':
+                document.getElementById('dataLancamento').innerText = convertStrDataToNormalStrData(data);
+                break;
+            case 'diretor':
+                document.getElementById('diretor').innerText = data;
                 break;
             default:
                 console.log('Nenhuma necessidade de alterar algo no Preview');
