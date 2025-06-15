@@ -65,6 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         }else{
             configDeslogado();
+            if(path === '/cadastro_filmes.html'){
+                alert('You  need to be an admin to access this page');
+                window.location.href = '/index.html';
+            }
 
         }
     }

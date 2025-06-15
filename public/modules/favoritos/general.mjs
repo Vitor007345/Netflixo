@@ -3,6 +3,8 @@ async function favoritar(favouriteBtn, currentUser, filmeId, update = true){
     const icon = favouriteBtn.querySelector('i');
     icon.classList.remove('bi-star');
     icon.classList.add('bi-star-fill');
+    const textFavorito = favouriteBtn.querySelector('div') || favouriteBtn.querySelector('span');
+    textFavorito.innerText = 'Desfavorite';
     if(update){
         currentUser.favoritos.add(filmeId);
         await currentUser.updateInServer();
@@ -13,6 +15,8 @@ async function desfavoritar(favouriteBtn, currentUser, filmeId, update = true){
     const icon = favouriteBtn.querySelector('i');
     icon.classList.add('bi-star');
     icon.classList.remove('bi-star-fill');
+    const textFavorito = favouriteBtn.querySelector('div') || favouriteBtn.querySelector('span');
+    textFavorito.innerText = 'Favorite';
     if(update){
         currentUser.favoritos.remove(filmeId);
         await currentUser.updateInServer();
