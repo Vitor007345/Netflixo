@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflixo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/favoritos.css">
+    <script type="module" src="assets/scripts/app.js"></script>
+</head>
+
+<body>
+    <header class="d-flex justify-content-between bg-dark align-items-center position-relative">
+
+        <img src="assets/imgs/logo.png" alt="Logo-netflixo" class="logo">
+        <img src="assets/imgs/logo-pequena.png" alt="" class="logo-pequena">
+        
+        <h3 class="text-center">Seus filmes Favoritos</h3>
+
+        <div class="user-info align-self-baseline">
+            <div class="not-logged">
+                <button class="btlogin">Login</button>
+                <button class="btsignup">Sign-up</button>
+            </div>
+            <div class="logged">
+                <span id="username">Username</span>
+                <img src="assets/imgs/basicUser.png" alt="" id="userimg" class="userimg">
+            </div>
+
+        </div> <!--Fim user-info-->
+
+        <aside id="sidebar-menu" class="sidebar position-absolute end-0 top-0">
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html"><i class="bi bi-house"></i> <span>Home</span></a></li>
+                    <li><a href="#"><i class="bi bi-person"></i> <span>Sua conta</span></a></li>
+                    <li><a href="#"><i class="bi bi-gear"></i> <span>Configurações</span></a></li>
+                    <li><a href="#"><i class="bi bi-star"></i> <span>Favoritos</span></a></li>
+                    <li><a href="#"><i class="bi bi-clock"></i> <span>Assistir depois</span></a></li>
+                    <li><a href="#"><i class="bi bi-book"></i> <span>Histórico</span></a></li>
+                    <li><a href="#"><i class="bi bi-hand-thumbs-up"> </i><span>Filmes curtidos</span></a></li>
+                    <li><a id="sair-conta" href="#"><i class="bi bi-box-arrow-left"></i> <span>Sair da conta</span></a></li>
+                    <li><a id="crud" href="cadastro_filmes.html"><i class="bi bi-plus-square-dotted"></i><span>CRUDE</span> <span class="fs-6">Only for admins</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+    </header>
+
+    <main>
+        <h3 id="zeroFav" class="text-center"></h3>
+        <section id="sectionFilmes" class="filmes container-fluid">
+            <!--Preenchido com js-->
+        </section>
+    </main>
+</body>
+
+</html>

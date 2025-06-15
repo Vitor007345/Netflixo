@@ -1,0 +1,21 @@
+@import url(home.css);
+
+header h3, main h3{
+    color: white;
+}
+main{
+    position: relative;
+    min-height: calc(100vh - 100px);
+}
+#zeroFav{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width:768px){
+    #zeroFav{
+        transform: translate(-50%, -100%);
+    }
+}

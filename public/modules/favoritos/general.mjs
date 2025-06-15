@@ -1,21 +1,21 @@
 import { storage_key } from "../../assets/scripts/constantes.js";
-function favoritar(favouriteBtn, currentUser, filmeId, update = true){
+async function favoritar(favouriteBtn, currentUser, filmeId, update = true){
     const icon = favouriteBtn.querySelector('i');
     icon.classList.remove('bi-star');
     icon.classList.add('bi-star-fill');
     if(update){
         currentUser.favoritos.add(filmeId);
-        currentUser.updateInServer();
+        await currentUser.updateInServer();
     }
 }
 
-function desfavoritar(favouriteBtn, currentUser, filmeId, update = true){
+async function desfavoritar(favouriteBtn, currentUser, filmeId, update = true){
     const icon = favouriteBtn.querySelector('i');
     icon.classList.add('bi-star');
     icon.classList.remove('bi-star-fill');
     if(update){
         currentUser.favoritos.remove(filmeId);
-        currentUser.updateInServer();
+        await currentUser.updateInServer();
     }
 }
 

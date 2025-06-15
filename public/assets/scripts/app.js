@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('sair-conta').addEventListener('click', (e)=>{
                         sessionStorage.removeItem(storage_key);
                         localStorage.removeItem(storage_key);
-                        window.location.href = (path === '/cadastro_filmes.html')? '/index.html' : window.location.href;
+                        window.location.href = (path === '/cadastro_filmes.html' || path === '/favoritos.html')? '/index.html' : window.location.href;
                     });
                 })
                 .catch((e)=>{

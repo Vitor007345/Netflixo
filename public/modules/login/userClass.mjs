@@ -1,4 +1,4 @@
-import { users_key } from "../../assets/scripts/constantes.js";
+import { users_key, filmes_key } from "../../assets/scripts/constantes.js";
 import { deleteInApi , postInApi, putInApi, getInApi, deepCompare, getSafeVersionOfArray} from "../utils/index.mjs";
 
 export class User{
@@ -47,6 +47,17 @@ export class User{
                             }
                         }
                         return sucesso;
+                    },
+                    async function getFilmes(){
+                        userThis.#checkDestroyed();
+                        let filmes = null;
+                        try{
+                            let allFilmes = await getInApi(filmes_key);
+                            filmes = allFilmes.filter((filme=>this.includes(parseInt(filme.id))))
+                        }catch(e){
+                            console.error('Erro no carregamento dos filmes favoritos', e);
+                        }
+                        return filmes;
                     }
                 ]);
                 this.#favoritosProxy = safeFavoritos;

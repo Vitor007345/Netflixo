@@ -3,18 +3,27 @@ import { storage_key } from "../../assets/scripts/constantes.js";
 import { User } from '../login/userClass.mjs'
 import { favoritar, desfavoritar, getUserId } from "../favoritos/general.mjs";
 
-function carregaFilmes(filmes, frases, estaNoFiltro = false) {
+function carregaFilmes(filmes, frases, estaNoFiltro = false, estaNoFav = false, numPorRowNoFav, defavouriteCallback) {
+    if(estaNoFav){
+        if(filmes.length === 0){
+            document.getElementById('zeroFav').innerText = 'Você ainda não tem nenhum filme favorito, clique no botão favoritar de algum filme para ele aparecer aqui'
+        }
+        frases = [];
+        for(let i = 0; i < Math.ceil(filmes.length / numPorRowNoFav); i++){
+            frases.push('');
+        }
+    }
     const numDeRows = frases.length; //seta o número de linhas de filmes correspondente ao número de frase
     let numPorRow = filmes.length / numDeRows; //calcula o número médio de filmes por linha
-    if (numPorRow < 6 && !estaNoFiltro) { //6 é o número mínimo por linha pra n ficar feio
+    if (numPorRow < 6 && !(estaNoFiltro || estaNoFav)) { //6 é o número mínimo por linha pra n ficar feio
         console.log('Banco de dados pequeno demais para o número de frases');
         console.log('Aumente o banco de dados ou diminua o número de frases');
         alert('Erro no carregamento dos filme');
         return;
     }
     //coloca o resto da divisão caso não seja inteira na primemira linha
-    let numPrimeiraRow = numPorRow;
-    if (!Number.isInteger(numPorRow)) {
+    let numPrimeiraRow = (estaNoFav? ((filmes.length < numPorRowNoFav)? filmes.length : numPorRowNoFav):numPorRow);
+    if (!Number.isInteger(numPorRow) && !estaNoFav) {
         numPorRow = Math.floor(numPorRow);
         numPrimeiraRow = numPorRow + (filmes.length % numDeRows);
     }
@@ -24,18 +33,29 @@ function carregaFilmes(filmes, frases, estaNoFiltro = false) {
     let sFilmes = document.getElementById('sectionFilmes');
     sFilmes.innerHTML = ""; //antes de botar os trem limpa oq tinha antes antes
     let c = 0; //contador de filmes
+
+    let filmesNaoColocados = filmes.length - numPrimeiraRow;
     for (let i = 1; i <= numDeRows; i++) { //percorre o número de linhas
         newFrase(frases[i - 1], sFilmes, i) //adiciona uma nova frase a cada linha
         if (i === 1) { //se for a primeira linha deve adicionar o numero geral por linha + o resto q equivale a o valor da variavel numPrimeiraRow
             for (; c < numPrimeiraRow; c++) { //repete o número de filmes da primeira linha vezes
                 carregaOFilme(c, ordemFilmes, sFilmes, i, filmes);
             }
-            criaBotoesCarousel(i);
+            if(!estaNoFav) criaBotoesCarousel(i);
         } else { //se não vai normal
-            for (let j = 0; j < numPorRow; c++, j++) { //repete o número de filmes por linha vezes
+            let filmesNessaRow = numPorRow;
+            if(estaNoFav){
+                if(filmesNaoColocados <= numPorRowNoFav){
+                    filmesNessaRow = filmesNaoColocados;
+                }else{
+                    filmesNessaRow = numPorRowNoFav;
+                    filmesNaoColocados -= numPorRowNoFav;
+                }
+            }
+            for (let j = 0; j < filmesNessaRow; c++, j++) { //repete o número de filmes por linha vezes
                 carregaOFilme(c, ordemFilmes, sFilmes, i, filmes);
             }
-            criaBotoesCarousel(i);
+            if(!estaNoFav) criaBotoesCarousel(i);
         }
     }
     function criaBotoesCarousel(i) {
@@ -71,7 +91,10 @@ function carregaFilmes(filmes, frases, estaNoFiltro = false) {
                     e.preventDefault();
                     if(user){
                         if(favoritado){
-                            desfavoritar(favouriteBtn, user, idDoFilme);
+                            desfavoritar(favouriteBtn, user, idDoFilme)
+                                .then(()=>{
+                                    if(estaNoFav && defavouriteCallback) defavouriteCallback(idDoFilme);
+                                });
                         }else{
                             favoritar(favouriteBtn, user, idDoFilme);
                         }
