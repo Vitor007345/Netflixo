@@ -83,6 +83,12 @@ async function setupDetalhes() {
             const [filme, categorias, filmes_categorias] = await Promise.all(Object.values(promessas));
             setupSidebar();
             setupFiltro(categorias)
+            document.getElementById('search-input').addEventListener('focus', ()=>{
+                window.location.href = '/index.html';
+            });
+            document.getElementById('filter-dropdown').addEventListener('click', ()=>{
+                window.location.href = '/index.html';
+            })
             carregaDetalhes(filme, categorias, filmes_categorias);
         }catch(e){
             console.error('Erro Carregamento das APIS', e);
